@@ -1,0 +1,257 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#fff1f3">
+<title>Our Memory Book ♡</title>
+<link rel="manifest" href="manifest.json">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800&family=Pacifico&display=swap');
+:root{--pink:#ff7f9f;--deep:#8e4058;--ink:#653e4b;--cream:#fffaf5;--pale:#fff0f2;--line:#f5d8dc;--green:#c8dfc0;--shadow:0 12px 34px #b65d7020}
+*{box-sizing:border-box}body{margin:0;background:linear-gradient(135deg,#fff6f1,#fff0f5 55%,#fff8ed);font-family:Nunito,system-ui,sans-serif;color:var(--ink)}
+button,input,textarea,select{font:inherit}button{cursor:pointer;border:0}
+.app{max-width:1400px;margin:auto;min-height:100vh;display:grid;grid-template-columns:240px 1fr;gap:22px;padding:22px}
+.sidebar{background:#fffaf5d9;border:1px solid var(--line);border-radius:28px;padding:22px 16px;display:flex;flex-direction:column;box-shadow:var(--shadow)}
+.brand{font-family:Pacifico,cursive;font-size:27px;line-height:1.25;color:#a34764;text-align:center}.subtitle{text-align:center;font-size:13px;margin:6px 0 22px;color:#b16c7c}
+.nav{display:grid;gap:7px}.nav button{padding:12px 13px;border-radius:16px;background:transparent;text-align:left;color:#805366;font-weight:700}.nav button.active,.nav button:hover{background:#ffe1e7;color:#9a3857}.side-note{margin-top:auto;padding:20px 8px 0;text-align:center;font-family:Pacifico,cursive;color:#b85e7b;line-height:1.8}
+main{min-width:0}.hero{border-radius:28px;overflow:hidden;background:linear-gradient(120deg,#ffd9df,#fff1d9 48%,#e4dcff);padding:25px 30px;min-height:190px;position:relative;display:flex;align-items:center;box-shadow:var(--shadow);border:1px solid #f8d7d9}
+.hero:after{content:"✿  ♡  ✧  ♡  ✿";position:absolute;right:25px;bottom:12px;font-size:25px;color:#e58ba0;opacity:.8}.hero-copy{max-width:620px;position:relative;z-index:1}.eyebrow{font-size:12px;text-transform:uppercase;letter-spacing:2px;font-weight:800;color:#a85b72}.hero h1{font-family:Pacifico,cursive;font-size:clamp(29px,4vw,48px);font-weight:400;line-height:1.2;margin:8px 0;color:#8f4058}.hero p{margin:0;max-width:470px;line-height:1.6}.hero-art{font-size:85px;margin-left:auto;padding:0 18px;filter:drop-shadow(0 8px 4px #b96b6b22)}
+.topline{display:flex;justify-content:space-between;align-items:center;gap:12px;margin:20px 2px 14px}.topline h2{margin:0;font-family:Pacifico,cursive;font-size:25px;font-weight:400;color:#994a64}.small{font-size:13px;color:#a77c87}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:13px;margin-bottom:20px}.stat,.panel{background:#fffaf7e8;border:1px solid var(--line);border-radius:22px;padding:17px;box-shadow:var(--shadow)}.stat .emoji{font-size:24px}.stat strong{display:block;font-size:24px;color:#a34764;margin:4px 0}.stat span{font-size:13px;color:#a77c87}
+.columns{display:grid;grid-template-columns:minmax(0,1.45fr) minmax(260px,.8fr);gap:16px}.panel h3{margin:0 0 12px;font-size:17px;color:#984b65}.feature{display:grid;grid-template-columns:1fr 1fr;gap:14px}.note-card{background:#fff2e8;border:1px solid #f7d8d5;border-radius:18px;padding:15px;min-height:145px;position:relative;overflow:hidden}.note-card .sticker{font-size:25px;position:absolute;right:12px;top:8px}.note-card .date{font-size:12px;color:#b5838d}.note-card h4{margin:7px 0;font-size:16px}.note-card p{margin:0;font-size:14px;line-height:1.5;white-space:pre-wrap}
+.memory-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:13px}.memory{background:white;border:1px solid #f4d7da;border-radius:16px;overflow:hidden;transform:rotate(var(--tilt,0deg));box-shadow:0 5px 15px #a85c7012}.memory img{width:100%;height:145px;object-fit:cover;background:#ffedf0;display:block}.memory .mem-body{padding:12px}.memory h4{margin:0 0 5px;font-size:15px}.memory p{margin:0;font-size:13px;line-height:1.45}.memory small{display:block;color:#b5838d;margin-top:8px}.empty{grid-column:1/-1;text-align:center;padding:35px 15px;color:#a77c87;background:#fff4f4;border-radius:16px}.empty b{display:block;font-size:34px;margin-bottom:8px}
+.btn{background:var(--pink);color:white;border-radius:999px;padding:11px 17px;font-weight:800;box-shadow:0 6px 13px #ff7f9f33}.btn:hover{filter:brightness(.97);transform:translateY(-1px)}.btn.secondary{background:#ffe3e8;color:#9c4962;box-shadow:none}.btn.tiny{padding:7px 11px;font-size:12px}.actions{display:flex;gap:8px;align-items:center;flex-wrap:wrap}.filters{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:15px}.filter{background:#fff0f3;border-radius:999px;padding:8px 12px;color:#9b6878;font-size:12px}.filter.active{background:#ff829f;color:white}
+.section{display:none}.section.active{display:block}.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.field{display:grid;gap:6px;margin-bottom:12px}.field label{font-size:13px;font-weight:800;color:#9b6074}.field input,.field textarea,.field select{width:100%;border:1px solid #f0cfd6;background:#fffdfb;border-radius:13px;padding:12px;color:var(--ink);outline-color:#ff9bb0}.field textarea{min-height:115px;resize:vertical}.full{grid-column:1/-1}.letter{padding:18px;border:1px dashed #eeb8c5;border-radius:18px;background:#fff4e9;margin-bottom:12px}.letter h4{margin:0 0 8px}.letter p{white-space:pre-wrap;line-height:1.6;margin:0}.letter small{display:block;margin-top:10px;color:#b17c88}
+.toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:#8f4058;color:white;padding:12px 18px;border-radius:999px;box-shadow:var(--shadow);display:none;z-index:5}.footer{text-align:center;color:#b98b95;font-size:12px;padding:24px}
+@media(max-width:900px){.app{grid-template-columns:1fr;padding:12px;gap:12px}.sidebar{padding:14px;border-radius:22px}.brand{font-size:23px}.subtitle{margin-bottom:10px}.nav{display:flex;overflow:auto;gap:5px}.nav button{white-space:nowrap;padding:10px 12px;font-size:13px}.side-note{display:none}.hero{padding:22px;min-height:160px}.hero-art{font-size:60px;padding:0}.columns{grid-template-columns:1fr}.memory-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:520px){.hero-art{display:none}.hero{min-height:170px}.stats{gap:8px}.stat{padding:12px}.stat strong{font-size:20px}.stat span{font-size:11px}.feature{grid-template-columns:1fr}.memory-grid{gap:9px}.memory img{height:125px}.memory .mem-body{padding:9px}.memory h4{font-size:14px}.form-grid{grid-template-columns:1fr}.full{grid-column:auto}.topline{align-items:flex-start;flex-direction:column}}
+@import url('https://fonts.googleapis.com/css2?family=Patrick+Hand:wght@400;700&family=Pacifico&display=swap');
+body{background:#f9dfe5;background-image:radial-gradient(#edb6c3 1px,transparent 1px),linear-gradient(135deg,#ffe9ed,#f9dce4 55%,#fff0df);background-size:17px 17px,auto;font-family:'Patrick Hand',sans-serif;font-size:17px}
+.app{max-width:1500px;gap:18px;padding:18px}
+.sidebar{background:#fff5f0;border:2px solid #f4c4ce;border-radius:22px 22px 35px 22px;box-shadow:5px 7px 0 #e9b4c1,0 14px 32px #a64f6520;position:relative}
+.sidebar:before{content:"";position:absolute;inset:8px;border:1px dashed #e8a8b8;border-radius:16px;pointer-events:none}
+.brand,.hero h1,.topline h2{font-family:'Pacifico',cursive;font-weight:400;color:#a33e5d}.brand{font-size:29px;text-shadow:1px 2px #ffe1e7}
+.nav button{font-family:'Patrick Hand',cursive;font-size:18px;border:1px dashed transparent}.nav button.active,.nav button:hover{background:#ffdce5;border:1px dashed #e99aad;box-shadow:inset 0 0 0 3px #fff5f5}
+.hero{background:repeating-linear-gradient(135deg,#fff5e7 0,#fff5e7 14px,#fff0f3 14px,#fff0f3 28px);border:2px solid #e9b8c2;border-radius:14px 22px 15px 22px;box-shadow:5px 6px 0 #e5b2bf,0 14px 32px #a64f6520;min-height:205px}
+.hero:before{content:"♡ washi tape ♡";position:absolute;top:10px;left:35%;font-size:13px;letter-spacing:2px;background:#ffb9c9d9;padding:4px 16px;transform:rotate(-2deg);color:#a34561;border:1px dashed #fff}
+.hero:after{content:"✿ ♡ ✧ 🐾 ♡ ✿";font-size:28px;color:#e58ba0}.hero h1{font-size:clamp(30px,4vw,47px)}.hero p{font-size:18px}
+.stat,.panel{background:#fffaf1;border:2px solid #efc9ce;border-radius:13px 18px 13px 18px;box-shadow:4px 5px 0 #eec4cb,0 14px 32px #a64f6510;position:relative}
+.stat:after,.panel:after{content:"♡";position:absolute;top:7px;right:12px;color:#f0a0b2;font-size:19px}.stat strong{font-family:'Pacifico',cursive;font-weight:400}.panel h3{font-family:'Patrick Hand',cursive;font-size:22px;color:#a44361}
+.note-card{background:#fff0cf;border:1px dashed #e8b6a4;border-radius:5px;box-shadow:2px 4px 0 #eed7b7;transform:rotate(-.5deg)}.note-card:before{content:"";position:absolute;top:-8px;left:38%;width:72px;height:18px;background:#ffb7c7b8;transform:rotate(-4deg)}
+.memory{background:white;border:1px solid #ead3d0;border-radius:3px;padding:7px 7px 0;box-shadow:2px 5px 9px #9e5b681c;position:relative}.memory:nth-child(odd){transform:rotate(-1.4deg)}.memory:nth-child(even){transform:rotate(1.2deg)}
+.memory:before{content:"";position:absolute;z-index:2;top:-5px;left:34%;width:62px;height:15px;background:#ffb7c9cc;transform:rotate(-5deg);border:1px solid #fff6}
+.memory img{border:1px solid #f1e3dc;height:160px}.memory .mem-body{padding:11px 8px 12px}.memory h4{font-family:'Patrick Hand',cursive;font-size:19px;color:#9d4a62}.memory p{font-size:16px}.memory small{font-size:13px}
+.empty{background:#fff4f2;border:2px dashed #edb9c6;border-radius:12px;font-size:17px}
+.btn{background:#ff7898;border:2px solid #fff2f5;box-shadow:0 3px 0 #d85e7d,0 5px 10px #ff7f9f22;font-family:'Patrick Hand',cursive;font-size:18px}.btn.secondary{background:#ffe1e8;border:1px dashed #e6a2b2;color:#98445d;box-shadow:0 3px 0 #e7bdc8}
+.field input,.field textarea,.field select{border:2px solid #f1cbd3;border-radius:8px;background:#fffdf9;font-family:'Patrick Hand',cursive;font-size:17px}.field label{font-size:16px;color:#9b4c66}
+.letter{background:#fff3d9;border:1px dashed #e8b5ac;border-radius:4px;box-shadow:3px 4px 0 #edd6c0;position:relative;padding:22px 18px}.letter:before{content:"💗";position:absolute;right:12px;top:8px}.letter h4{font-family:'Patrick Hand',cursive;font-size:21px;color:#a24361}.letter p{font-size:17px}
+.filters .filter{border:1px dashed #e9b2c0}.filters .filter.active{background:#ff7898;color:white}.footer{font-family:'Patrick Hand',cursive;font-size:16px}
+@media(max-width:900px){.app{padding:10px}.hero{min-height:180px}.hero:before{left:20%;top:8px}.memory img{height:140px}}
+@media(max-width:520px){.hero:before{left:12%;font-size:10px}.hero-art{display:block;font-size:44px;padding:0}.memory img{height:115px}.memory:before{width:43px;height:12px}.nav button{font-size:15px}}
+
+/* Physical scrapbook / flipbook */
+.book-intro{text-align:center;color:#a64f6a;font-family:'Pacifico',cursive;font-size:20px;margin:6px 0 18px}.book-intro span{font-size:15px}
+.book-stage{padding:16px 4px 25px;perspective:1800px}
+.real-book{position:relative;display:grid;grid-template-columns:1fr 1fr;max-width:1000px;min-height:440px;margin:auto;background:#f4d4c5;border:9px solid #c58e7d;border-radius:9px 17px 17px 9px;box-shadow:0 18px 0 #c58e7d,0 25px 45px #824b5b35;transform-style:preserve-3d}
+.real-book:before{content:"";position:absolute;inset:0;pointer-events:none;z-index:3;border:1px solid #fff8e7;box-shadow:inset 0 0 18px #9f62551f}
+.book-spine{position:absolute;z-index:4;left:50%;top:-8px;bottom:-8px;width:24px;transform:translateX(-50%);background:linear-gradient(90deg,#d4a08b,#fff0d7 38%,#bd806e 50%,#f9e3c7 70%,#c18a79);box-shadow:0 0 8px #74434c30}
+.book-spine:before{content:"";position:absolute;top:7%;bottom:7%;left:50%;width:8px;transform:translateX(-50%);background:repeating-linear-gradient(to bottom,#ad7665 0 4px,#f5ddc8 4px 24px);border-radius:10px}
+.book-page{position:relative;min-width:0;padding:28px 30px;background-color:#fff9eb;background-image:radial-gradient(#e9c9ba 0.6px,transparent .6px),linear-gradient(90deg,#fffaf0,#fff5e7);background-size:12px 12px,auto;overflow:hidden}
+.book-left{border-radius:2px 0 0 2px;box-shadow:inset -12px 0 20px #b8756520}
+.book-right{border-radius:0 2px 2px 0;box-shadow:inset 12px 0 20px #b8756520}
+.book-page:after{content:"";position:absolute;pointer-events:none;inset:12px;border:1px dashed #e7b7b5;border-radius:3px}
+.book-page-inner{position:relative;z-index:1;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
+.book-cover-title{font-family:'Pacifico',cursive;font-size:clamp(25px,4vw,42px);line-height:1.35;color:#a23f60;margin:14px 0}
+.book-cover-art{font-size:clamp(50px,8vw,88px);line-height:1.3;filter:drop-shadow(0 5px 2px #9b5a5a20)}
+.book-subtitle{font-size:18px;color:#a66b7b;line-height:1.7}
+.book-sticker{font-size:22px;letter-spacing:8px;margin:8px 0}
+.book-page-number{margin-top:auto;padding-top:15px;color:#bb8a8e;font-size:13px}
+.book-memory-photo{width:min(100%,270px);height:205px;object-fit:cover;padding:8px 8px 30px;background:#fff;box-shadow:0 5px 13px #75445622;border:1px solid #eadad1;transform:rotate(-2deg);cursor:zoom-in}
+.book-memory-photo.placeholder{display:grid;place-items:center;background:#ffe4e9;font-size:64px}
+.book-memory-title{font-family:'Patrick Hand',cursive;color:#a13f60;font-size:25px;margin:17px 0 7px}
+.book-memory-story{font-size:17px;line-height:1.7;white-space:pre-wrap;overflow-wrap:anywhere;max-width:95%;margin:0 auto;color:#77505b}
+.book-memory-date{font-size:14px;color:#b77b8a;margin-top:12px}
+.book-tape{position:absolute;top:20px;left:50%;transform:translateX(-50%) rotate(-4deg);width:78px;height:19px;background:#ffb6c9c9;border:1px solid #fff9;z-index:2}
+.book-letter-paper{width:100%;text-align:left;background:#fff0d7;border:1px dashed #e6b1a8;padding:22px 18px;box-shadow:3px 5px 0 #efd5c5;position:relative;z-index:1}
+.book-letter-paper h3{font-family:'Patrick Hand',cursive;color:#a13f60;font-size:24px;margin:0 0 12px}
+.book-letter-paper p{font-size:17px;line-height:1.8;white-space:pre-wrap;overflow-wrap:anywhere}
+.book-controls{display:flex;align-items:center;justify-content:center;gap:16px;flex-wrap:wrap;margin:0 auto;max-width:800px}
+#bookPageLabel{color:#a35b72;font-weight:700;font-size:14px;text-align:center}
+.book-hint{text-align:center;color:#ae7d8b;font-size:14px;margin:15px 0}
+.real-book.flipping .book-left{animation:pageFlipLeft .48s ease both}
+.real-book.flipping .book-right{animation:pageFlipRight .48s ease both}
+@keyframes pageFlipLeft{0%{transform:rotateY(0);filter:brightness(1)}50%{filter:brightness(.8)}100%{transform:rotateY(-3deg);filter:brightness(1)}}
+@keyframes pageFlipRight{0%{transform:rotateY(0);filter:brightness(1)}45%{transform:rotateY(-7deg);filter:brightness(.86)}100%{transform:rotateY(0);filter:brightness(1)}}
+@media(max-width:650px){.book-stage{padding:10px 0 20px}.real-book{min-height:370px;border-width:6px;box-shadow:0 10px 0 #c58e7d,0 17px 25px #824b5b30}.book-spine{width:15px}.book-page{padding:20px 14px}.book-page:after{inset:7px}.book-memory-photo{height:135px;padding:5px 5px 22px}.book-memory-title{font-size:20px;margin:13px 0 6px}.book-memory-story{font-size:14px;line-height:1.5}.book-cover-title{font-size:25px}.book-subtitle{font-size:14px}.book-sticker{font-size:16px;letter-spacing:3px}.book-letter-paper{padding:14px 10px}.book-letter-paper h3{font-size:19px}.book-letter-paper p{font-size:14px;line-height:1.55}.book-controls{gap:9px}.book-controls .btn{padding:9px 12px;font-size:14px}}
+@media(prefers-reduced-motion:reduce){.real-book.flipping .book-left,.real-book.flipping .book-right{animation:none}}
+</style>
+</head>
+<body>
+<div class="app">
+<aside class="sidebar">
+  <div style="font-size:42px;text-align:center;line-height:1.2">🐱🎀🐻</div><div class="brand">♡ You & Me ♡</div><div class="subtitle">our little memory book</div>
+  <nav class="nav" id="nav">
+    <button class="active" data-page="home">🏡 Home</button><button data-page="flipbook">📖 Flip Through Our Book</button><button data-page="memories">📸 Our Memories</button><button data-page="add">🌷 Add a Memory</button><button data-page="letters">💌 Love Letters</button><button data-page="timeline">🗓️ Our Timeline</button><button data-page="settings">⚙️ Settings</button>
+  </nav>
+  <div class="side-note">always you<br>always me ♡<br>🐻 🌷 🐱</div>
+</aside>
+<main>
+  <header class="hero"><div class="hero-copy"><div class="eyebrow">a scrapbook made with love</div><h1>Our Memory Book ♡</h1><p>A little place for our favourite moments, silly photos, tiny notes, and all the things we never want to forget.</p></div><div class="hero-art">🐻‍❄️💕🐱</div></header>
+
+  <section class="section active" id="page-home">
+    <div class="topline"><h2>Welcome to our little world</h2><span class="small" id="today"></span></div>
+    <div class="stats"><div class="stat"><div class="emoji">📷</div><strong id="memoryCount">0</strong><span>little memories</span></div><div class="stat"><div class="emoji">💌</div><strong id="letterCount">0</strong><span>love letters</span></div><div class="stat"><div class="emoji">💗</div><strong>∞</strong><span>reasons to love you</span></div></div>
+    <div class="columns">
+      <div class="panel"><h3>📸 Our latest Polaroids ♡</h3><div id="recentMemories" class="memory-grid"></div></div>
+      <div class="panel"><h3>💌 A tiny love note</h3><div class="note-card"><span class="sticker">💖</span><div class="date">a little reminder</div><h4>In case you forgot…</h4><p>You're my favourite person, my safe place, and my cutest notification. I'm so glad this little world is ours. 🥹❤️</p></div><h3 style="margin-top:18px">✨ Our little promise</h3><p style="line-height:1.7;font-size:14px">We don't have to make every day perfect. We just have to keep making little memories together.</p><div class="actions"><button class="btn secondary" onclick="showPage('add')">Add today's moment +</button></div></div>
+    </div>
+  </section>
+
+
+  <section class="section" id="page-flipbook">
+    <div class="topline"><h2>Our little storybook ♡</h2><span class="small">every page holds a piece of us</span></div>
+    <div class="book-intro">🐱 🎀 🧸 <span>Made of memories, sealed with love.</span> 🌷 ♡</div>
+    <div class="book-stage">
+      <div class="real-book" id="realBook">
+        <div class="book-spine"></div>
+        <div class="book-page book-left" id="bookLeft"></div>
+        <div class="book-page book-right" id="bookRight"></div>
+        <div class="page-corner">♡</div>
+      </div>
+    </div>
+    <div class="book-controls">
+      <button class="btn secondary" id="bookPrev">← Previous pages</button>
+      <span id="bookPageLabel">Our story · Cover</span>
+      <button class="btn" id="bookNext">Next pages →</button>
+    </div>
+    <p class="book-hint">Tip: add photos in “Add a Memory” and they’ll appear in your scrapbook pages automatically. ♡</p>
+  </section>
+
+  <section class="section" id="page-memories">
+    <div class="topline"><h2>Our Memories ♡</h2><button class="btn" onclick="showPage('add')">＋ Add memory</button></div>
+    <div class="filters"><button class="filter active" data-filter="All">All</button><button class="filter" data-filter="Photo">Photos</button><button class="filter" data-filter="Moment">Moments</button><button class="filter" data-filter="Note">Notes</button></div>
+    <div class="memory-grid" id="allMemories"></div>
+  </section>
+
+  <section class="section" id="page-add">
+    <div class="topline"><h2>Add a little memory 🌷</h2><span class="small">every little thing matters</span></div>
+    <div class="panel">
+      <form id="memoryForm">
+        <div class="form-grid">
+          <div class="field"><label for="title">Memory title</label><input id="title" maxlength="80" placeholder="Our first call, a silly selfie..." required></div>
+          <div class="field"><label for="kind">Memory type</label><select id="kind"><option>Photo</option><option>Moment</option><option>Note</option></select></div>
+          <div class="field"><label for="date">Date</label><input id="date" type="date" required></div>
+          <div class="field"><label for="photo">Choose a photo (optional)</label><input id="photo" type="file" accept="image/*"></div>
+          <div class="field full"><label for="story">Tell the little story</label><textarea id="story" maxlength="1500" placeholder="What happened? Why do you want to remember it? ❤️"></textarea></div>
+        </div>
+        <div class="actions"><button class="btn" type="submit">Save to our memory book ♡</button><button class="btn secondary" type="reset">Clear</button></div>
+      </form>
+    </div>
+  </section>
+
+  <section class="section" id="page-letters">
+    <div class="topline"><h2>Love Letters 💌</h2></div>
+    <div class="panel"><form id="letterForm"><div class="form-grid"><div class="field"><label for="letterTitle">Letter title</label><input id="letterTitle" placeholder="Open when you miss me..." maxlength="80" required></div><div class="field"><label for="sender">From</label><select id="sender"><option>Badusha</option><option>Akshaya</option></select></div><div class="field full"><label for="letterBody">Your letter</label><textarea id="letterBody" placeholder="Write something from your heart... 🥹" maxlength="5000" required></textarea></div></div><button class="btn" type="submit">Seal this letter 💗</button></form></div>
+    <div class="topline"><h2>Our little letters</h2></div><div id="lettersList"></div>
+  </section>
+
+  <section class="section" id="page-timeline">
+    <div class="topline"><h2>Our Timeline 🗓️</h2><button class="btn" onclick="showPage('add')">＋ Add a moment</button></div>
+    <div class="panel"><div id="timelineList"></div></div>
+  </section>
+
+  <section class="section" id="page-settings">
+    <div class="topline"><h2>Our little settings ⚙️</h2></div>
+    <div class="panel"><h3>Names in our book</h3><form id="settingsForm"><div class="form-grid"><div class="field"><label>Your name</label><input id="yourName" maxlength="40" value="Badusha"></div><div class="field"><label>Her name</label><input id="herName" maxlength="40" value="Akshaya"></div></div><button class="btn" type="submit">Save names ♡</button></form><hr style="border:0;border-top:1px solid #f3d9df;margin:22px 0"><h3>Backup your memories</h3><p style="font-size:14px;line-height:1.6">This starter version saves data in this browser only. Export a backup before clearing browser data or changing devices.</p><div class="actions"><button class="btn secondary" id="exportBtn">Download backup</button><label class="btn secondary" for="importFile">Restore backup</label><input hidden id="importFile" type="file" accept="application/json"><button class="btn secondary" id="clearBtn">Clear this browser's data</button></div></div>
+  </section>
+  <div class="footer">made with all the little bits of love ♡ · you & me, always</div>
+</main>
+</div>
+<div class="toast" id="toast"></div>
+<script>
+const KEY='our-memory-book-v1';
+let data=loadData(), currentFilter='All';
+function loadData(){try{return JSON.parse(localStorage.getItem(KEY))||{memories:[],letters:[],yourName:'Badusha',herName:'Akshaya'}}catch(e){return {memories:[],letters:[],yourName:'Badusha',herName:'Akshaya'}}}
+function save(){localStorage.setItem(KEY,JSON.stringify(data));render()}
+function esc(s=''){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function niceDate(s){if(!s)return '';let d=new Date(s+'T12:00:00');return d.toLocaleDateString(undefined,{day:'numeric',month:'short',year:'numeric'})}
+function showToast(msg){let t=document.getElementById('toast');t.textContent=msg;t.style.display='block';setTimeout(()=>t.style.display='none',2500)}
+function showPage(page){document.querySelectorAll('.section').forEach(x=>x.classList.toggle('active',x.id==='page-'+page));document.querySelectorAll('.nav button').forEach(x=>x.classList.toggle('active',x.dataset.page===page));window.scrollTo({top:0,behavior:'smooth'});if(page==='add')document.getElementById('date').value ||= new Date().toISOString().slice(0,10)}
+document.querySelectorAll('.nav button').forEach(b=>b.addEventListener('click',()=>showPage(b.dataset.page)));
+function card(m){return `<article class="memory" style="--tilt:${(Math.random()*2-1).toFixed(1)}deg">${m.photo?`<img src="${m.photo}" alt="">`:`<div style="height:145px;display:grid;place-items:center;background:linear-gradient(135deg,#ffe0e7,#fff1d8);font-size:48px">${m.kind==='Note'?'💌':m.kind==='Moment'?'🌷':'🐻‍❄️💕'}</div>`}<div class="mem-body"><h4>${esc(m.title)}</h4><p>${esc(m.story||'A little moment to keep forever. ♡')}</p><small>${niceDate(m.date)} · ${esc(m.kind)}</small><div style="text-align:right;margin-top:8px"><button class="filter" onclick="deleteMemory('${m.id}')">Remove</button></div></div></article>`}
+
+let bookIndex=0, bookBusy=false;
+function bookPages(){
+  const items=[];
+  items.push({type:'cover'});
+  const memories=[...data.memories].sort((a,b)=>(a.date||'').localeCompare(b.date||''));
+  for(let i=0;i<memories.length;i+=2){
+    items.push({type:'memory',item:memories[i]});
+    items.push(memories[i+1]?{type:'memory',item:memories[i+1]}:{type:'end'});
+  }
+  const letters=[...data.letters];
+  for(const l of letters) items.push({type:'letter',item:l});
+  items.push({type:'end'});
+  return items;
+}
+function bookPageHTML(page, side, number){
+  if(!page || page.type==='end') return `<div class="book-page-inner"><div class="book-cover-art">🐱🌷🐻</div><h2 class="book-cover-title">More memories<br>to come… ♡</h2><p class="book-subtitle">Our story is still being written.</p><div class="book-sticker">🎀 ✿ 💗 ✿ 🎀</div><div class="book-page-number">${number}</div></div>`;
+  if(page.type==='cover') return `<div class="book-page-inner"><div class="book-sticker">✿ ♡ 🐾 ♡ ✿</div><div class="book-cover-art">🐻‍❄️💕🐱</div><h2 class="book-cover-title">Our Memory<br>Book ♡</h2><p class="book-subtitle">${esc(data.yourName||'You')} & ${esc(data.herName||'Akshaya')}<br>a little book full of us</p><div class="book-sticker">🎀 🌷 🧸 🌷 🎀</div><div class="book-page-number">made with love · 01</div></div>`;
+  if(page.type==='memory'){
+    const m=page.item;
+    const photo=m.photo?`<img class="book-memory-photo" src="${m.photo}" alt="${esc(m.title)}" onclick="openBookPhoto(this.src)">`:`<div class="book-memory-photo placeholder">${m.kind==='Note'?'💌':m.kind==='Moment'?'🌷':'🐻‍❄️💕'}</div>`;
+    return `<div class="book-page-inner"><div class="book-tape"></div>${photo}<h3 class="book-memory-title">${esc(m.title)}</h3><p class="book-memory-story">${esc(m.story||'A little moment to keep forever. ♡')}</p><div class="book-memory-date">♡ ${niceDate(m.date)} · ${esc(m.kind)} ♡</div><div class="book-sticker">🌷 ✧ 🐾 ✧ 🌷</div><div class="book-page-number">${number}</div></div>`;
+  }
+  const l=page.item;
+  return `<div class="book-page-inner"><div class="book-sticker">💌 🎀 💌</div><article class="book-letter-paper"><h3>♡ ${esc(l.title)} ♡</h3><p>${esc(l.body)}</p><small>With love, ${esc(l.sender)} · ${niceDate(l.date)}</small></article><div class="book-sticker">🐱 💗 🌷</div><div class="book-page-number">${number}</div></div>`;
+}
+function renderBook(){
+  const pages=bookPages();
+  const leftIndex=bookIndex===0?0:bookIndex;
+  const rightIndex=bookIndex===0?1:bookIndex+1;
+  const left=pages[leftIndex]||{type:'end'};
+  const right=pages[rightIndex]||{type:'end'};
+  document.getElementById('bookLeft').innerHTML=bookPageHTML(left,'left',leftIndex+1);
+  document.getElementById('bookRight').innerHTML=bookPageHTML(right,'right',rightIndex+1);
+  document.getElementById('bookPageLabel').textContent=bookIndex===0?'Our story · Cover':`Our story · Pages ${leftIndex+1}–${rightIndex+1}`;
+  document.getElementById('bookPrev').disabled=bookIndex===0;
+  document.getElementById('bookPrev').style.opacity=bookIndex===0?'.45':'1';
+  document.getElementById('bookNext').textContent=right.type==='end'?'Back to cover ↺':'Next pages →';
+}
+function flipBook(direction){
+  if(bookBusy)return;
+  const pages=bookPages();
+  const maxIndex=Math.max(0,Math.ceil((pages.length-1)/2)*2-1);
+  if(direction>0){
+    if(bookIndex>=maxIndex){bookIndex=0}else bookIndex=Math.min(bookIndex+2,maxIndex);
+  }else bookIndex=Math.max(0,bookIndex-2);
+  bookBusy=true;
+  const book=document.getElementById('realBook');
+  book.classList.remove('flipping');void book.offsetWidth;book.classList.add('flipping');
+  setTimeout(()=>{renderBook();book.classList.remove('flipping');bookBusy=false},220);
+}
+function openBookPhoto(src){
+  const overlay=document.createElement('div');
+  overlay.style.cssText='position:fixed;inset:0;background:#48202ee8;z-index:99;display:grid;place-items:center;padding:20px;cursor:zoom-out';
+  overlay.innerHTML=`<img src="${src}" style="max-width:95vw;max-height:90vh;object-fit:contain;background:white;padding:10px;border:2px solid #ffd8e1;box-shadow:0 15px 50px #0005">`;
+  overlay.addEventListener('click',()=>overlay.remove());document.body.appendChild(overlay);
+}
+document.getElementById('bookPrev').addEventListener('click',()=>flipBook(-1));
+document.getElementById('bookNext').addEventListener('click',()=>flipBook(1));
+
+function render(){renderBook();document.getElementById('memoryCount').textContent=data.memories.length;document.getElementById('letterCount').textContent=data.letters.length;let sorted=[...data.memories].sort((a,b)=>(b.date||'').localeCompare(a.date||''));document.getElementById('recentMemories').innerHTML=sorted.slice(0,3).map(card).join('')||'<div class="empty"><b>🌷</b>Your story starts with one little memory.<br>Add your first favourite moment.</div>';let filtered= currentFilter==='All'?sorted:sorted.filter(m=>m.kind===currentFilter);document.getElementById('allMemories').innerHTML=filtered.map(card).join('')||'<div class="empty"><b>📸</b>No memories here yet.<br>Save a little moment together. ♡</div>';document.getElementById('lettersList').innerHTML=[...data.letters].reverse().map(l=>`<article class="letter"><h4>💌 ${esc(l.title)}</h4><p>${esc(l.body)}</p><small>From ${esc(l.sender)} · ${niceDate(l.date)}</small><div style="text-align:right"><button class="filter" onclick="deleteLetter('${l.id}')">Remove</button></div></article>`).join('')||'<div class="empty"><b>💌</b>Your first letter is waiting to be written.</div>';document.getElementById('timelineList').innerHTML=sorted.map(m=>`<div style="display:grid;grid-template-columns:95px 1fr;gap:15px;padding:14px 0;border-bottom:1px solid #f5dce0"><strong style="color:#ad6278">${niceDate(m.date)}</strong><div><b>${esc(m.title)}</b><p style="margin:5px 0 0;font-size:14px">${esc(m.story||'A little memory ♡')}</p></div></div>`).join('')||'<div class="empty"><b>🗓️</b>Your story will appear here, one memory at a time.</div>';document.getElementById('yourName').value=data.yourName||'Badusha';document.getElementById('herName').value=data.herName||'Akshaya'}
+document.querySelectorAll('[data-filter]').forEach(b=>b.addEventListener('click',()=>{currentFilter=b.dataset.filter;document.querySelectorAll('[data-filter]').forEach(x=>x.classList.toggle('active',x===b));render()}));
+function deleteMemory(id){if(confirm('Remove this memory from this browser?')){data.memories=data.memories.filter(m=>m.id!==id);save();showToast('Memory removed')}}
+function deleteLetter(id){if(confirm('Remove this letter from this browser?')){data.letters=data.letters.filter(l=>l.id!==id);save();showToast('Letter removed')}}
+document.getElementById('memoryForm').addEventListener('submit',async e=>{e.preventDefault();let file=document.getElementById('photo').files[0],photo='';if(file){if(file.size>1200000){showToast('Please choose a photo smaller than 1.2 MB for this demo');return}photo=await new Promise((resolve,reject)=>{let r=new FileReader();r.onload=()=>resolve(r.result);r.onerror=reject;r.readAsDataURL(file)})}data.memories.push({id:crypto.randomUUID(),title:document.getElementById('title').value.trim(),kind:document.getElementById('kind').value,date:document.getElementById('date').value,story:document.getElementById('story').value.trim(),photo});save();e.target.reset();document.getElementById('date').value=new Date().toISOString().slice(0,10);showPage('memories');showToast('A little memory saved ♡')});
+document.getElementById('letterForm').addEventListener('submit',e=>{e.preventDefault();data.letters.push({id:crypto.randomUUID(),title:document.getElementById('letterTitle').value.trim(),sender:document.getElementById('sender').value,body:document.getElementById('letterBody').value.trim(),date:new Date().toISOString().slice(0,10)});save();e.target.reset();showToast('Your letter is sealed with love 💌')});
+document.getElementById('settingsForm').addEventListener('submit',e=>{e.preventDefault();data.yourName=document.getElementById('yourName').value.trim()||'You';data.herName=document.getElementById('herName').value.trim()||'Akshaya';save();showToast('Names updated ♡')});
+document.getElementById('exportBtn').addEventListener('click',()=>{let blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'}),a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='our-memory-book-backup.json';a.click();URL.revokeObjectURL(a.href);showToast('Backup downloaded')});
+document.getElementById('importFile').addEventListener('change',async e=>{let f=e.target.files[0];if(!f)return;try{let d=JSON.parse(await f.text());if(!Array.isArray(d.memories)||!Array.isArray(d.letters))throw Error();data=d;save();showToast('Backup restored ♡')}catch(err){showToast('That backup file could not be read')}e.target.value=''});
+document.getElementById('clearBtn').addEventListener('click',()=>{if(confirm('This clears all memory book data saved in this browser. Export a backup first. Continue?')){data={memories:[],letters:[],yourName:'Badusha',herName:'Akshaya'};save();showToast('Browser data cleared')}});
+document.getElementById('today').textContent=new Date().toLocaleDateString(undefined,{weekday:'long',day:'numeric',month:'long'});document.getElementById('date').value=new Date().toISOString().slice(0,10);render();
+if('serviceWorker' in navigator && location.protocol.startsWith('http')) navigator.serviceWorker.register('./sw.js').catch(()=>{});
+</script>
+</body>
+</html>
