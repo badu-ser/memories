@@ -1,0 +1,9 @@
+{
+  "name": "Our Memory Book",
+  "short_name": "Our Memories",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#fff6f1",
+  "theme_color": "#fff1f3",
+  "description": "A tiny kawaii scrapbook for two people."
+}
